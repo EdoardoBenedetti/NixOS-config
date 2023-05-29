@@ -2,17 +2,17 @@
   description = "Personal NixOS/Home-Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # Stable until June 2023
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # Stable until June 2023
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05"; # Stable until Dec 2023
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable version
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
   };
 
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprland, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
 
   let
     system = "x86_64-linux";
@@ -42,7 +42,7 @@
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = { inherit pkgs; inherit unstable; inherit hyprland; };
+      specialArgs = { inherit pkgs; inherit unstable; };
       modules = [
         ./nixos/configuration.nix
 

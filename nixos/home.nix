@@ -28,6 +28,7 @@
     gnome.nautilus
     gnome-solanum
     grim
+    gruvbox-gtk-theme
     gtg
     gtk-engine-murrine
     jq
@@ -42,10 +43,13 @@
     selectdefaultapplication
     slurp
     sptlrx
+    swappy
     swaybg
+    swaynotificationcenter
     thunderbird
     vlc
     vscodium
+    waybar
     xfce.thunar
 
     # Dev
@@ -55,16 +59,10 @@
     # Non-Free
     authy
     dropbox
+    spotify
   ] ++ (with unstable; [
-    gruvbox-gtk-theme
     lapce
     pw-viz
-    swappy
-    swaynotificationcenter
-    waybar
-
-    # Non-Free
-    spotify
   ]);
 
   services = {

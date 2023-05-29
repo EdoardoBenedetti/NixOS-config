@@ -74,8 +74,7 @@
   services = {
     openssh = {
       enable = true;
-      # settings.PermitRootLogin = "no"; # NixOS 23 and later
-      permitRootLogin = "no"; # NixOS 22.11
+      settings.PermitRootLogin = "no"; # NixOS 23 and later
       ports = [ 2541 ];
       allowSFTP = true;
     };
@@ -85,7 +84,7 @@
 
   # ---------------------------------------------------------------------------------------------------
   # OTHERS
-  system.stateVersion = "22.11"; # DO NOT TOUCH
+  system.stateVersion = "23.05";
 
   services = {
     printing.enable = true; #CUPS

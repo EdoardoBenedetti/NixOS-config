@@ -1,11 +1,10 @@
-{ config, pkgs, unstable, hyprland, ... }:
+{ config, pkgs, unstable, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix 
     ./system.nix
     ./greeter.nix
-    hyprland.nixosModules.default
   ];
 
   # ---------------------------------------------------------------------------------------------------
@@ -20,7 +19,7 @@
   # ---------------------------------------------------------------------------------------------------
   # DESKTOP
   services = {
-    xserver.desktopManager.gnome.enable = true;
+    xserver.desktopManager.gnome.enable = false;
     gnome = {
       core-utilities.enable = false;
       gnome-keyring.enable = true;
@@ -36,6 +35,10 @@
   security = {
     pam.services.greetd.enableGnomeKeyring = true;
     sudo.execWheelOnly = true;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
   
   # ---------------------------------------------------------------------------------------------------
@@ -76,6 +79,7 @@
     binutils
     cairo
     cargo
+    docker-compose
     gcc
     gnumake
     pkg-config
@@ -83,7 +87,7 @@
     python3Packages.pip
     rustc
   ] ++ (with unstable; [
-    docker-compose
+    hello
   ]);
 
   # Nix Flakes
