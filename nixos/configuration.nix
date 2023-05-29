@@ -40,6 +40,10 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
+  fonts = {
+    fonts = [ pkgs.nerdfonts ];
+    fontDir.enable = true;
+  };
   
   # ---------------------------------------------------------------------------------------------------
   # PACKAGES
@@ -52,6 +56,7 @@
     cryptsetup
     git
     glxinfo
+    gnome.adwaita-icon-theme
     gparted
     greetd.tuigreet
     helvum

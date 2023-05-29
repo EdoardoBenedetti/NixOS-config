@@ -17,7 +17,7 @@
       };
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_5_15;
+    kernelPackages = pkgs.linuxPackages;
     kernelModules = [ "k10temp" "amdgpu"]; 
     extraModulePackages = [ config.boot.kernelPackages.rtl88x2bu ];
     kernelParams = [ 

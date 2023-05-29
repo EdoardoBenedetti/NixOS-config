@@ -28,14 +28,12 @@
     gnome.nautilus
     gnome-solanum
     grim
-    gruvbox-gtk-theme
     gtg
     gtk-engine-murrine
     jq
     libnotify
     libreoffice
     neofetch
-    nerdfonts
     obs-studio
     prismlauncher
     qbittorrent
@@ -74,7 +72,18 @@
 
   gtk = {
     enable = true;
-    theme.name = "Gruvbox-Dark-BL";
+    font = {
+      name = "Arimo Nerd Font";
+      size = 12;
+    };
+    theme = {
+      name = "Gruvbox-Dark-BL";
+      package = pkgs.gruvbox-gtk-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
     cursorTheme.name = "Bibata-Modern-Ice";
   };
 }
