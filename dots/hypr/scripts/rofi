@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+rofi \
+  -config $HOME/.config/hypr/components/rofi/launchers/type-1/style-7.rasi \
+  $1

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+CONFIG_DIR="$HOME/.config/hypr/components/waybar/"
+WAYBAR_COMMAND="waybar -c $CONFIG_DIR/config -s $CONFIG_DIR/style.css"
+TIMER=5
+
+$WAYBAR_COMMAND # added to make sure it didn't start twice, probably not necessary
+while true; do
+  if ! pidof Hyprland > /dev/null; then
+    break
+  fi
+  notify-send "Waybar" "Waybar crashed! Restarting in $TIMER seconds."
+  sleep $TIMER
+  if ! pidof waybar > /dev/null; then
+    notify-send "Waybar" "Starting Waybar..."
+    $WAYBAR_COMMAND
+  fi
+done

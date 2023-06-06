@@ -2,7 +2,6 @@
   description = "Personal NixOS/Home-Manager Configuration";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # Stable until June 2023
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05"; # Stable until Dec 2023
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable version
     home-manager = {

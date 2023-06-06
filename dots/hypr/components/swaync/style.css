@@ -1,0 +1,40 @@
+@define-color bg #282828;
+@define-color fg #ebdbb2;
+@define-color red #fb4934;
+@define-color dark-red #9d0006;
+@define-color aqua #8ec07c;
+@define-color dark-aqua #427b58;
+@define-color orange #fe8019;
+
+.control-center {
+  background: @bg;
+  border-radius: 20px 0px 0px 20px;
+  border-style: solid;
+  border-width: 2px 0px 2px 2px;
+  border-color: @fg;
+
+  padding: 10px;
+}
+
+.widget-mpris-title {
+  font-size: 16px;
+}
+
+.widget-mpris-subtitle {
+  font-size: 10px;
+}
+
+.shut>button, .reboot>button {
+  min-width: 80px;
+  min-height: 20px;
+  margin-right: 20px;
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @fg;
+}
+
+.shut>button { background: @red; }
+.shut>button:hover { background: @dark-red; }
+.reboot>button { background: @aqua; }
+.reboot>button:hover { background: @dark-aqua; }

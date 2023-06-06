@@ -1,0 +1,9 @@
+#!/bin/sh
+
+output=$(playerctl metadata --format '{{artist}} - {{title}}' 2>/dev/null)
+
+if [ -z "$output" ]; then
+  echo "Nothing playing"
+else
+  echo "$output"
+fi

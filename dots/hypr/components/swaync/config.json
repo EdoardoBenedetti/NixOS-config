@@ -1,0 +1,95 @@
+{
+  "$schema": "/home/edoardo/.config/hypr/components/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "top",
+  "cssPriority": "user",
+  "control-center-margin-top": 50,
+  "control-center-margin-bottom": 50,
+  "control-center-margin-right": 0,
+  "control-center-margin-left": 0,
+  "notification-icon-size": 64,
+  "notification-body-image-height": 100,
+  "notification-body-image-width": 200,
+  "timeout": 6,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "fit-to-screen": true,
+  "notification-window-width": 400,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+  "scripts": {
+    "example-script": {
+      "exec": "echo 'Do something...'",
+      "urgency": "Normal"
+    }
+  },
+  "notification-visibility": {
+  },
+  "widgets": [
+    "title",
+    "dnd",
+    "notifications",
+    "mpris",
+    "label#power",
+    "menubar#power"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear All"
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "label": {
+      "max-lines": 5,
+      "text": "Label Text"
+    },
+    "mpris": {
+      "image-size": 50,
+      "image-radius": 0
+    },
+    "volume": {},
+    "label#power": {
+      "text": "Power Options"
+    },
+    "menubar#power": {
+      "buttons#shut": {
+        "position": "left",
+        "actions": [
+          {
+            "label": "Shut down",
+            "command": "shutdown -P now"
+          }
+        ]
+      },
+      "buttons#reboot": {
+        "position": "left",
+        "actions": [
+          {
+            "label": "Reboot",
+            "command": "shutdown -r now"
+          }
+        ]
+      }
+    },
+    "buttons-grid#power": {
+      "actions": [
+        {
+          "label": "Shut down",
+          "command": "shutdown -P now"
+        },
+        {
+          "label": "Reboot",
+          "command": "shutdown -r now"
+        }
+      ]
+    }
+  }
+}

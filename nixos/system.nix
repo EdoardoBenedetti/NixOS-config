@@ -9,6 +9,7 @@
         enable = true;
         extraEntries = {
           # Must copy /EFI/Microsoft from Microsoft partition to /boot/EFI/Microsoft
+          # It's probably detected automatically anyway, this is just here as a backup
           "Windows10.conf" = ''
             title Windows
             efi /boot/EFI/Microsoft/Boot/Bootmgfw.efi
@@ -46,16 +47,10 @@
     enable = true;
     driSupport = true;
     extraPackages = [
-      #pkgs.amdvlk
       pkgs.rocm-opencl-runtime
       pkgs.rocm-opencl-icd
     ];
-  }; # Enables OpenCL and Vulkan support for AMD GPUs
-  
-  #hardware.opengl.extraPackages32 = [
-  #  pkgs.driversi686Linux.amdvlk
-  #]; # Vulkan support for 32-bit applications
-  # TO BE REMOVED amdvlk shouldn't be necessary
+  };   
 
   # ---------------------------------------------------------------------------------------------------
   # NETWORKING AND CONNECTIONS
@@ -75,7 +70,7 @@
     openssh = {
       enable = true;
       settings.PermitRootLogin = "no"; # NixOS 23 and later
-      ports = [ 2541 ];
+      ports = [ 2541 ]; # Damn, not I'mma get doxxed /s
       allowSFTP = true;
     };
   };
@@ -87,7 +82,7 @@
   system.stateVersion = "23.05";
 
   services = {
-    printing.enable = true; #CUPS
+    printing.enable = true;
     flatpak.enable = true;
     avahi.enable = true;
     blueman.enable = true;

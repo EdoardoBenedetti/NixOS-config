@@ -1,8 +1,13 @@
 { config, pkgs, unstable, ... }:
 
+let
+  user = "edoardo";
+  homedir = "/home/${user}";
+in
+
 {
-  home.username = "edoardo";
-  home.homeDirectory = "/home/edoardo";
+  home.username = "${user}";
+  home.homeDirectory = "${homedir}";
   home.stateVersion = "18.09";
   programs.home-manager.enable = true;
 
@@ -85,6 +90,18 @@
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme.name = "Bibata-Modern-Ice";
+  };
+
+  home.file = {
+    ".config/hypr" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${homedir}/NixOS/dots/hypr";
+    };
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${homedir}/NixOS/dots/nvim";
+    };
+    ".zshrc" = {
+      source = config.lib.file.mkOutOfStoreSymlink "${homedir}/NixOS/dots/zshrc";
+    };
   };
 }
 

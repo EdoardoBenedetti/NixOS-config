@@ -19,7 +19,7 @@
   # ---------------------------------------------------------------------------------------------------
   # DESKTOP
   services = {
-    xserver.desktopManager.gnome.enable = false;
+    xserver.desktopManager.gnome.enable = false; # Temporarily disabled
     gnome = {
       core-utilities.enable = false;
       gnome-keyring.enable = true;
@@ -49,6 +49,7 @@
   # PACKAGES
   environment.systemPackages = with pkgs; [
     alacritty
+    android-tools
     appimage-run
     bibata-cursors
     cage # Single window wayland compositor
@@ -92,7 +93,7 @@
     python3Packages.pip
     rustc
   ] ++ (with unstable; [
-    hello
+    hello # Just a placeholder, nothing fancy
   ]);
 
   # Nix Flakes

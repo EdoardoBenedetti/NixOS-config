@@ -1,0 +1,114 @@
+{
+  "clock": {
+        "format": " {:%a %d at %H:%M}",
+        "format-alt": " {:%A, %B %d, %Y (%R)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+  },
+
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%",
+    "max-length": 10
+  },
+
+  "disk": {
+    "format": " {used}/{total}",
+    "interval": "30"
+  },
+
+  "hyprland/window": {
+    "format": " {}"
+  },
+
+  "memory": {
+    "format": " {used:0.1f}GiB/{total:0.1f}GiB",
+    "interval": "5"
+  },
+
+  "network": {
+    "format": " {essid} {signalStrength}% - {ipaddr}: {bandwidthUpBytes}-{bandwidthDownBytes}"
+  },
+
+  "pulseaudio": {
+    "format": " {volume}%",
+    "on-click": "pavucontrol"
+  },
+  
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "TEMPERATURE HIGH! {temperatureC}°C!",
+    "format": " {temperatureC}°C"
+  },
+
+  "tray": {
+    "icon-size": 10,
+    "rotation": 90
+  },
+
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": ""
+    }
+  },
+
+  "custom/spotify": {
+    "exec": "$HOME/.config/hypr/scripts/spotify",
+    "interval": 3,
+    "rotate": 90,
+    "format": " {}"
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon} {}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }
+}

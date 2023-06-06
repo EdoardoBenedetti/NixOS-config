@@ -1,0 +1,73 @@
+[
+  {
+    "layer": "top",
+    "position": "top",
+    "output": "HDMI-A-1",
+    "margin-left": 4,
+    "margin-right": 4,
+    "margin-top": 4,
+    "height": 20,
+
+    "include": [
+      "~/.config/hypr/components/waybar/default-modules.json"
+    ],
+
+    "modules-left": [
+      "hyprland/window"
+    ],
+    "modules-right": [
+      "custom/notification",
+      "pulseaudio",
+      "clock"
+    ]
+  },
+
+
+  {
+    "layer": "top",
+    "position": "bottom",
+    "output": "HDMI-A-1",
+    "margin-left": 4,
+    "margin-right": 4,
+    "margin-bottom": 4,
+    "height": 20,
+
+    "include": [
+      "~/.config/hypr/components/waybar/default-modules.json"
+    ],
+
+    "modules-left": [
+      "network"
+    ],
+
+    "modules-right": [
+      "cpu",
+      "temperature",
+      "disk",
+      "memory"
+    ]
+  },
+
+
+  {
+    "layer": "top",
+    "position": "left",
+    "output": "HDMI-A-1",
+    "margin-top": 4,
+    "margin-bottom": 4,
+    "margin-left": 4,
+    "width": 20,
+
+    "include": [
+      "~/.config/hypr/components/waybar/default-modules.json"
+    ],
+
+    "modules-left": [
+      "wlr/workspaces"
+    ],
+
+    "modules-right": [
+      "custom/spotify"
+    ]
+  }
+]

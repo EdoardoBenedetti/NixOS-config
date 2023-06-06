@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# Edited from Grimblast, requires rofi and swappy
+
+SUBJECT=${1:-none}
+if [ "$SUBJECT" == "none" ]; then
+  ROFI_OPT="Draw area\nActive window\nCurrent display\nAll displays"
+  SEL=$(echo -e "$ROFI_OPT" | $HOME/.config/hypr/scripts/rofi -dmenu -p "Choose screenshot method")
+  
+  case $SEL in
+    "Active window")
+      SUBJECT="active"
+      ;;
+    "All displays")
+      SUBJECT="screen"
+      ;;
+    "Current display")
+      SUBJECT="output"
+      ;;
+    "Draw area")
+      SUBJECT="area"
+      ;;
+  esac
+fi
+
+if [ "$SUBJECT" != "active" ] && [ "$SUBJECT" != "screen" ] && [ "$SUBJECT" != "output" ] && [ "$SUBJECT" != "area" ]; then
+  echo "Targets:"
+  echo "  active: Currently active window."
+  echo "  screen: All visible outputs."
+  echo "  output: Currently active output."
+  echo "  area: Manually select a region or window."
+  exit
+fi
+
+notify() {
+  notify-send -t 3000 "Screenshot" "$@"
+}
+
+die() {
+  MSG=${1:-Bye}
+  notify "Error: $MSG"
+  exit 2
+}
+
+takeScreenshot() {
+  GEOM=$1
+  OUTPUT=$2
+  if [ -n "$OUTPUT" ]; then
+    grim -o "$OUTPUT" - || die "Unable to invoke grim"
+  elif [ -z "$GEOM" ]; then
+    grim - || die "Unable to invoke grim"
+  else
+    grim -g "$GEOM" - || die "Unable to invoke grim"
+  fi
+}
+
+if [ "$SUBJECT" = "active" ]; then
+  FOCUSED=$(hyprctl activewindow -j)
+  GEOM=$(echo "$FOCUSED" | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+  APP_ID=$(echo "$FOCUSED" | jq -r '.class')
+  WHAT="$APP_ID window"
+elif [ "$SUBJECT" = "screen" ]; then
+  GEOM=""
+  WHAT="Screen"
+elif [ "$SUBJECT" = "output" ]; then
+  GEOM=""
+  OUTPUT=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)' | jq -r '.name')
+  WHAT="$OUTPUT"
+elif [ "$SUBJECT" = "area" ]; then
+  WORKSPACES="$(hyprctl monitors -j | jq -r 'map(.activeWorkspace.id)')"
+  WINDOWS="$(hyprctl clients -j | jq -r --argjson workspaces "$WORKSPACES" 'map(select([.workspace.id] | inside($workspaces)))')"
+  GEOM=$(echo "$WINDOWS" | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp)
+  # Check if user exited slurp without selecting the area
+  if [ -z "$GEOM" ]; then
+    exit 1
+  fi
+  WHAT="Area"
+elif [ "$SUBJECT" = "window" ]; then
+  die "Subject 'window' is now included in 'area'"
+else
+  die "Unknown subject to take a screen shot from" "$SUBJECT"
+fi
+
+takeScreenshot "$GEOM" "$OUTPUT" | swappy -f - &
+notify "$WHAT screenshot taken"
