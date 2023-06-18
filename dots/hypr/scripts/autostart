@@ -5,9 +5,11 @@ HYPR=$HOME/.config/hypr
 hyprctl setcursor Bibata-Modern-Ice 16
 /nix/store/*polkit-gnome*/libexec/polkit-gnome-authentication-agent-1 &
 
-swaync -c $HYPR/components/swaync/config.json -s $HYPR/components/swaync/style.css &
 dropbox &
+
 swaybg -o HDMI-A-1 -i $HOME/Pictures/Wallpapers/Infrared/e6a9aiccawc91.jpg -m fill \
   -o DP-3 -i $HOME/Pictures/Wallpapers/Infrared/j6szuglccwc91.jpg -m fill &
+swayosd &
+swaync -c $HYPR/components/swaync/config.json -s $HYPR/components/swaync/style.css &
 
 $HYPR/scripts/launch-waybar &

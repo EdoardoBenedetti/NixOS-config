@@ -8,7 +8,7 @@ in
 {
   home.username = "${user}";
   home.homeDirectory = "${homedir}";
-  home.stateVersion = "18.09";
+  home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [ 
@@ -17,7 +17,6 @@ in
     blender
     chromium
     epiphany
-    ferdium
     filezilla
     firefox
     freecad
@@ -48,6 +47,7 @@ in
     sptlrx
     swappy
     swaybg
+    swayosd
     swaynotificationcenter
     thunderbird
     vlc

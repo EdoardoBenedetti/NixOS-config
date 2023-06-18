@@ -68,7 +68,7 @@
   };
   services = {
     openssh = {
-      enable = true;
+      enable = false;
       settings.PermitRootLogin = "no"; # NixOS 23 and later
       ports = [ 2541 ]; # Damn, not I'mma get doxxed /s
       allowSFTP = true;
